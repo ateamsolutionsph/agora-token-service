@@ -10,12 +10,21 @@ import (
 	"github.com/AgoraIO-Community/go-tokenbuilder/rtctokenbuilder"
 	"github.com/AgoraIO-Community/go-tokenbuilder/rtmtokenbuilder"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 var appID string
 var appCertificate string
 
 func main() {
+
+	// load .env file from given path
+	// we keep it empty it will load .env from current directory
+	err := godotenv.Load(".env")
+
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+    }
 
 	appIDEnv, appIDExists := os.LookupEnv("APP_ID")
 	appCertEnv, appCertExists := os.LookupEnv("APP_CERTIFICATE")
